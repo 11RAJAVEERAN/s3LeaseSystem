@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>My S3 Data</h2>
+{% if data %}
+<ul class="list-group mt-3">
+{% for obj in data %}
+<li class="list-group-item">{{ obj }}</li>
+{% endfor %}
+</ul>
+{% else %}
+<p class="text-muted mt-3">No approved access or lease expired.</p>
+{% endif %}
+<a href="{% url 'lease:my_requests' %}" class="btn btn-secondary mt-3">Back</a>
+{% endblock %}

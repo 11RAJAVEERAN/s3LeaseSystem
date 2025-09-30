@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>S3 Write Access</h2>
+{% if lease %}
+<form method="post" enctype="multipart/form-data">
+  {% csrf_token %}
+  <div class="mb-3">
+    <label for="file" class="form-label">Choose File to Upload</label>
+    <input type="file" name="file" id="file" class="form-control">
+  </div>
+  <button type="submit" class="btn btn-primary">Upload</button>
+</form>
+{% else %}
+<p class="text-muted">No approved write access or lease expired.</p>
+{% endif %}
+
+{% endblock %}

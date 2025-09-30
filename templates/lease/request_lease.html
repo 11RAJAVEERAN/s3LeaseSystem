@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>Request S3 Access</h2>
+<form method="post" class="mt-3">
+  {% csrf_token %}
+  <div class="mb-3">
+    <label class="form-label">Role</label>
+    <select name="role" class="form-select">
+      <option value="READ">Read</option>
+      <option value="WRITE">Write</option>
+    </select>
+  </div>
+  <div class="mb-3">
+    <label class="form-label">Reason</label>
+    <textarea name="reason" class="form-control" required></textarea>
+  </div>
+  <div class="mb-3">
+    <label class="form-label">Duration (seconds)</label>
+    <input type="number" name="duration" class="form-control" value="3600">
+  </div>
+  <button type="submit" class="btn btn-primary">Submit Request</button>
+</form>
+{% endblock %}

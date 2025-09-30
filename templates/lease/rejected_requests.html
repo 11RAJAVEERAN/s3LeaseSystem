@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>Rejected Requests</h2>
+<table class="table table-bordered table-hover mt-3">
+<thead class="table-light">
+<tr>
+<th>User</th>
+<th>Role</th>
+<th>Reason</th>
+<th>Rejected At</th>
+</tr>
+</thead>
+<tbody>
+{% for lease in leases %}
+<tr>
+<td>{{ lease.user.username }}</td>
+<td>{{ lease.role_requested }}</td>
+<td>{{ lease.reason }}</td>
+<td>{{ lease.approved_at }}</td>
+</tr>
+{% empty %}
+<tr><td colspan="4">No rejected requests.</td></tr>
+{% endfor %}
+</tbody>
+</table>
+{% endblock %}

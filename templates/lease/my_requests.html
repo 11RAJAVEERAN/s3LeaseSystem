@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>My Requests</h2>
+<table class="table table-bordered table-hover mt-3">
+<thead class="table-light">
+<tr>
+<th>#</th>
+<th>Role</th>
+<th>Reason</th>
+<th>Status</th>
+<th>Expiration</th>
+</tr>
+</thead>
+<tbody>
+{% for lease in leases %}
+<tr>
+<td>{{ forloop.counter }}</td>
+<td>{{ lease.role_requested }}</td>
+<td>{{ lease.reason }}</td>
+<td>
+{% if lease.status == 'APPROVED' %}
+<span class="badge bg-success">{{ lease.status }}</span>
+{% elif lease.status == 'PENDING' %}
+<span class="badge bg-warning text-dark">{{ lease.status }}</span>
+{% elif lease.status == 'REJECTED' %}
+<span class="badge bg-danger">{{ lease.status }}</span>
+{% elif lease.status == 'EXPIRED' %}
+<span class="badge bg-secondary">{{ lease.status }}</span>
+{% endif %}
+</td>
+<td>{{ lease.expiration|default:"-" }}</td>
+</tr>
+{% empty %}
+<tr><td colspan="5">No requests found.</td></tr>
+{% endfor %}
+</tbody>
+</table>
+<a href="{% url 'lease:request_lease' %}" class="btn btn-success mt-2">Request New Access</a>
+<a href="{% url 'lease:s3_data' %}" class="btn btn-info mt-2">View S3 Data</a>
+{% endblock %}
