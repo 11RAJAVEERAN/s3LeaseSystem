@@ -17,4 +17,9 @@ urlpatterns = [
     path('approved/', views.approved_requests, name='approved_requests'),
     path('rejected/', views.rejected_requests, name='rejected_requests'),
     path('approve/<int:lease_id>/', views.approve_lease, name='approve_lease'),
+    
+    path('download/<str:obj_name>/', views.download_file, name='download_file'),
+    path('delete/<str:obj_name>/', views.delete_file, name='delete_file'),
+    path('my-requests/', views.my_requests, name='my_requests'),
+    
 ]
